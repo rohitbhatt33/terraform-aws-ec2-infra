@@ -1,0 +1,41 @@
+# Terraform state files (VERY IMPORTANT)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Crash logs
+crash.log
+
+# Variable files (may contain secrets)
+*.tfvars
+*.tfvars.json
+
+# CLI config files (can contain credentials)
+.terraformrc
+terraform.rc
+
+# Lock file (optional but usually kept, see note below)
+# .terraform.lock.hcl
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+
+# Keys
+*.pem
+
+# Crash logs
+crash.log
+
+# OS / IDE
+.DS_Store
+.vscode/
