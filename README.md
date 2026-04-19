@@ -60,7 +60,7 @@ terraform-aws-ec2-infra/
 ├── main.tf              # EC2 instance + security group
 ├── variables.tf         # Input variables
 ├── outputs.tf           # Output values (public IP)
-├── provider.tf          # AWS provider configuration
+├── provider.tf          # AWS provider configuration file
 ├── terraform.tfvars     # Variable values (ignored in git)
 ├── .gitignore           # Ignored files
 └── README.md            # Project documentation
