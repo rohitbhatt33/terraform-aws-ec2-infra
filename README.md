@@ -1,0 +1,160 @@
+# 🚀 Terraform AWS EC2 Infrastructure Project
+
+## 📌 Overview
+
+This project demonstrates how to provision and deploy a basic web server on AWS using **Infrastructure as Code (IaC)** with Terraform. The setup automatically creates an EC2 instance, configures security groups, and deploys a simple web page accessible via public IP.
+
+Built using:
+
+* Terraform (Infrastructure as Code)
+* AWS EC2 (Virtual Server)
+* AWS Security Groups
+* User Data scripting for automation
+
+---
+
+## 🏗️ Architecture
+
+Terraform provisions the following resources:
+
+* EC2 Instance (Ubuntu / Amazon Linux)
+* Security Group (HTTP + SSH access)
+* Key Pair (for SSH access)
+* User Data script (installs and runs web server)
+
+---
+
+## ⚙️ Prerequisites
+
+Before running this project, ensure you have:
+
+* AWS Account
+* AWS CLI installed
+* Terraform installed
+* IAM user with required permissions (EC2, VPC, IAM)
+
+---
+
+## 🔐 AWS Authentication Setup
+
+Configure AWS credentials:
+
+```bash
+aws configure
+```
+
+You will need:
+
+* AWS Access Key ID
+* AWS Secret Access Key
+* Default region (e.g., ap-south-1)
+* Output format (json)
+
+---
+
+## 📁 Project Structure
+
+```
+terraform-aws-ec2-infra/
+│
+├── main.tf              # EC2 instance + security group
+├── variables.tf         # Input variables
+├── outputs.tf           # Output values (public IP)
+├── provider.tf          # AWS provider configuration
+├── terraform.tfvars     # Variable values (ignored in git)
+├── .gitignore           # Ignored files
+└── README.md            # Project documentation
+```
+
+---
+
+## 🚀 Deployment Steps
+
+### 1. Initialize Terraform
+
+```bash
+terraform init
+```
+
+### 2. Validate configuration
+
+```bash
+terraform validate
+```
+
+### 3. Plan infrastructure
+
+```bash
+terraform plan
+```
+
+### 4. Apply configuration
+
+```bash
+terraform apply
+```
+
+Type `yes` when prompted.
+
+---
+
+## 🌐 Access Web Server
+
+After successful deployment, Terraform will output a **Public IP**.
+
+Open in browser:
+
+```
+http://<public-ip>
+```
+
+You should see:
+
+```
+Hello from Terraform
+```
+
+---
+
+## 🧹 Destroy Infrastructure
+
+To avoid AWS charges:
+
+```bash
+terraform destroy
+```
+
+---
+
+## 🔒 Security Notes
+
+* `.tfstate` files are excluded from Git
+* `.pem` keys are not committed
+* IAM credentials should never be hardcoded
+* Use least privilege IAM policies
+
+---
+
+## 📊 Key Learnings
+
+* Infrastructure as Code with Terraform
+* AWS EC2 provisioning
+* Security Group configuration
+* Automating server setup using user data
+* Git best practices for DevOps projects
+
+---
+
+## 👨‍💻 Author
+
+Built as a DevOps learning project focusing on real-world AWS infrastructure automation.
+
+---
+
+## ⭐ Future Improvements
+
+* Add VPC networking module
+* Use S3 remote backend for Terraform state
+* Implement Auto Scaling Group
+* Add Load Balancer (ALB)
+* CI/CD with GitHub Actions
