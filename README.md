@@ -1,213 +1,190 @@
-# 🚀 Terraform AWS EC2 Infrastructure Project
+🚀 Terraform AWS EC2 Infrastructure Project (CI/CD Enabled)
+📌 Overview
 
-## 📌 Overview
+This project demonstrates how to provision and deploy a basic web server on AWS using Infrastructure as Code (IaC) with Terraform — fully automated using GitHub Actions CI/CD.
 
-This project demonstrates how to provision and deploy a basic web server on AWS using **Infrastructure as Code (IaC)** with Terraform. The setup automatically creates an EC2 instance, configures security groups, and deploys a simple web page accessible via public IP.
+The setup automatically:
+
+Provisions AWS infrastructure
+Creates an EC2 instance
+Configures security groups
+Deploys a web server using User Data
+Runs Terraform automatically via CI/CD pipeline
 
 Built using:
 
-* Terraform (Infrastructure as Code)
-* AWS EC2 (Virtual Server)
-* AWS Security Groups
-* User Data scripting for automation
+Terraform (Infrastructure as Code)
+AWS EC2 (Virtual Server)
+AWS Security Groups
+GitHub Actions (CI/CD)
+User Data scripting for automation
+🏗️ Architecture
+📐 Infrastructure Flow
+Developer Push
+      │
+      ▼
+GitHub Repository
+      │
+      ▼
+GitHub Actions (CI/CD Pipeline)
+      │
+      ├── terraform init
+      ├── terraform validate
+      └── terraform plan
+      │
+      ▼
+AWS Provider (us-east-1)
+      │
+      ▼
+Security Group (22, 80)
+      │
+      ▼
+EC2 Instance (Web Server)
+      │
+      ▼
+Public IP → Browser Access
+⚙️ CI/CD Implementation
 
----
+This project includes automated CI/CD using GitHub Actions.
 
-## 🏗️ Architecture
+✅ What Happens on Every Push
+Code is pushed to GitHub
+GitHub Actions workflow triggers automatically
+Terraform initializes
+Terraform validates configuration
+Terraform generates execution plan
+Pipeline completes with green status
 
-Terraform provisions the following resources:
+This ensures:
 
-* EC2 Instance (Ubuntu / Amazon Linux)
-* Security Group (HTTP + SSH access)
-* Key Pair (for SSH access)
-* User Data script (installs and runs web server)
+No manual Terraform execution required
+Infrastructure validation on every change
+Secure credential handling
+Consistent deployment workflow
+🔐 AWS Authentication in CI/CD
 
----
+AWS credentials are securely stored using GitHub Repository Secrets:
 
-## ⚙️ Prerequisites
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
 
-Before running this project, ensure you have:
+They are injected at runtime in GitHub Actions.
 
-* AWS Account
-* AWS CLI installed
-* Terraform installed
-* IAM user with required permissions (EC2, VPC, IAM)
+No credentials are hardcoded in Terraform files.
 
----
-
-## 🔐 AWS Authentication Setup
-
-Configure AWS credentials:
-
-```bash
-aws configure
-```
-
-You will need:
-
-* AWS Access Key ID
-* AWS Secret Access Key
-* Default region (e.g., ap-south-1)
-* Output format (json)
-
----
-
-## 📁 Project Structure
-
-```
+📁 Project Structure
 terraform-aws-ec2-infra/
 │
-├── main.tf              # EC2 instance + security group
+├── .github/
+│   └── workflows/
+│       └── terraform.yml
+├── main.tf              # EC2 + Security Group
 ├── variables.tf         # Input variables
-├── outputs.tf           # Output values (public IP)
+├── outputs.tf           # Public IP output
 ├── terraform.tfvars     # Variable values (ignored in git)
 ├── .gitignore           # Ignored files
 └── README.md            # Project documentation
-```
+🚀 Local Deployment Steps (Optional)
 
----
+If running manually:
 
-## 🚀 Deployment Steps
-
-### 1. Initialize Terraform
-
-```bash
+1️⃣ Initialize Terraform
 terraform init
-```
-
-### 2. Validate configuration
-
-```bash
+2️⃣ Validate configuration
 terraform validate
-```
-
-### 3. Plan infrastructure
-
-```bash
+3️⃣ Plan infrastructure
 terraform plan
-```
-
-### 4. Apply configuration
-
-```bash
+4️⃣ Apply configuration
 terraform apply
-```
 
-Type `yes` when prompted.
+Type yes when prompted.
 
----
+🌐 Access Web Server
 
-## 🌐 Access Web Server
+After successful deployment, Terraform outputs a Public IP.
 
-After successful deployment, Terraform will output a **Public IP**.
+Open in browser and access the app:
 
-Open in browser:
-
-```
 http://<public-ip>
-```
 
-You should see:
-
-```
-Hello from Terraform
-```
-
----
-
-## 🧹 Destroy Infrastructure
+🧹 Destroy Infrastructure
 
 To avoid AWS charges:
 
-```bash
 terraform destroy
-```
+🔒 Security Best Practices
+.tfstate files excluded from Git
+.pem keys not committed
+IAM credentials never hardcoded
+Secrets stored in GitHub Secrets
+Principle of Least Privilege followed
+🎯 DevOps Story (Interview Talking Points)
 
----
+This project represents a production-style DevOps workflow.
 
-## 🔒 Security Notes
+🧠 Problem Statement
 
-* `.tfstate` files are excluded from Git
-* `.pem` keys are not committed
-* IAM credentials should never be hardcoded
-* Use least privilege IAM policies
+Manual AWS provisioning is time-consuming, inconsistent, and error-prone.
 
----
+⚙️ My Solution
 
-## 🎯 DevOps Story (Interview Talking Points)
+I automated infrastructure provisioning using Terraform and integrated it with GitHub Actions for CI/CD automation.
 
-This project is not just a Terraform demo — it represents a real-world DevOps workflow used in production environments.
+🚀 What This Project Demonstrates
+Infrastructure as Code (IaC)
+Automated provisioning without AWS Console
+CI/CD-driven infrastructure validation
+Secure credential management
+Automated web server configuration using User Data
+💡 Real-World DevOps Mapping
+Concept	Implementation
+IaC	Terraform configuration files
+Compute	AWS EC2 instance
+Networking	Security Groups (port 22, 80)
+Automation	User Data script
+CI/CD	GitHub Actions pipeline
+Secrets Mgmt	GitHub Repository Secrets
+Version Control	Git + GitHub
+🧩 Interview Explanation (30-sec pitch)
 
-### 🧠 Problem Statement
+“I built an automated AWS infrastructure deployment using Terraform and integrated it with GitHub Actions. On every code push, the pipeline initializes, validates, and plans the infrastructure automatically. The setup provisions an EC2 instance with proper security groups and deploys a web server using user data. This ensures reproducible, secure, and production-ready infrastructure.”
 
-Manually provisioning infrastructure on AWS is slow, error-prone, and not scalable.
+📊 Key Learnings
+Infrastructure as Code with Terraform
+AWS EC2 provisioning
+Security Group configuration
+Automating server setup with User Data
+CI/CD integration with GitHub Actions
+Secure secret handling in pipelines
+📸 Screenshots
+✅ GitHub Actions Pipeline (Green Status)
 
-### ⚙️ My Solution
+(Add screenshot of Actions tab showing green workflow run)
 
-I automated the entire provisioning process using Terraform to achieve Infrastructure as Code (IaC).
+🌐 Web Server Output
 
-### 🚀 What This Project Demonstrates
+![Web server output](images/image.png)
 
-* Infrastructure provisioning without manual AWS console steps
-* Reproducible environment using code
-* Secure SSH and HTTP access through Security Groups
-* Automated web server setup using User Data scripts
+🖥 EC2 Instance Running
 
-### 💡 Real-World DevOps Mapping
+![(EC2 console screenshot)](images/image-1.png)
 
-| Concept         | Implementation                    |
-| --------------- | --------------------------------- |
-| IaC             | Terraform configuration files     |
-| Compute         | AWS EC2 instance                  |
-| Networking      | Security Groups (port 22, 80)     |
-| Automation      | User Data script for Apache setup |
-| Version Control | Git + GitHub                      |
+📦 Terraform Plan Output (when in local Log)
 
-### 🧩 Interview Explanation (30-sec pitch)
+![(Terraform Plan screenshot)](images/image-2.png)
 
-“I used Terraform to automate AWS infrastructure provisioning. It creates an EC2 instance, configures security groups for SSH and HTTP access, and deploys a simple web server automatically using user data. This removes manual setup and makes infrastructure reproducible and scalable.”
-
----
-
-## 📊 Key Learnings
-
-* Infrastructure as Code with Terraform
-* AWS EC2 provisioning
-* Security Group configuration
-* Automating server setup using user data
-* Git best practices for DevOps projects
-
----
-
-
-## 📸 Screenshots
-
-Add screenshots of your deployed application below:
-
-### Web Server Output
-
-![alt text](images/image.png)
-
-## EC2 Instances
-
-![alt text](images/image-1.png)
-
-## Terraform apply output
-
-![alt text](images/image-2.png)
-
----
-
-## 👨‍💻 Author
+👨‍💻 Author
 
 Rohit Bhatt
 
----
+⭐ Future Improvements
+Add remote backend (S3 + DynamoDB state locking)
+Implement Terraform Apply with manual approval
+Use OIDC authentication (no long-term access keys)
+Add VPC module
+Implement Load Balancer (ALB)
+Add Auto Scaling Group
+Multi-environment support (dev/stage/prod)
+🏁 Conclusion
 
-## ⭐ Future Improvements
-
-* Add VPC networking module
-* Use S3 remote backend for Terraform state
-* Implement Auto Scaling Group
-* Add Load Balancer (ALB)
-* CI/CD with GitHub Actions
+This project showcases a fully automated, CI/CD-enabled Terraform deployment on AWS. Infrastructure is now reproducible, secure, automated, and production-ready.
