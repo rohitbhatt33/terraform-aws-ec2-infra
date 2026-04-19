@@ -12,6 +12,6 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  description = "terraform"
+  description = "terraform-key"
   default = "terraform"
 }
