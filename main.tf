@@ -43,6 +43,6 @@ resource "aws_instance" "flask_server" {
               EOF
 
   tags = {
-    Name = "Terraform-Flask-Server"
+    Name = "Terraform-Flask-App"
   }
 }
