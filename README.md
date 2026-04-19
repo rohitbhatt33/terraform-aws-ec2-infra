@@ -134,6 +134,41 @@ terraform destroy
 
 ---
 
+## 🎯 DevOps Story (Interview Talking Points)
+
+This project is not just a Terraform demo — it represents a real-world DevOps workflow used in production environments.
+
+### 🧠 Problem Statement
+
+Manually provisioning infrastructure on AWS is slow, error-prone, and not scalable.
+
+### ⚙️ My Solution
+
+I automated the entire provisioning process using Terraform to achieve Infrastructure as Code (IaC).
+
+### 🚀 What This Project Demonstrates
+
+* Infrastructure provisioning without manual AWS console steps
+* Reproducible environment using code
+* Secure SSH and HTTP access through Security Groups
+* Automated web server setup using User Data scripts
+
+### 💡 Real-World DevOps Mapping
+
+| Concept         | Implementation                    |
+| --------------- | --------------------------------- |
+| IaC             | Terraform configuration files     |
+| Compute         | AWS EC2 instance                  |
+| Networking      | Security Groups (port 22, 80)     |
+| Automation      | User Data script for Apache setup |
+| Version Control | Git + GitHub                      |
+
+### 🧩 Interview Explanation (30-sec pitch)
+
+“I used Terraform to automate AWS infrastructure provisioning. It creates an EC2 instance, configures security groups for SSH and HTTP access, and deploys a simple web server automatically using user data. This removes manual setup and makes infrastructure reproducible and scalable.”
+
+---
+
 ## 📊 Key Learnings
 
 * Infrastructure as Code with Terraform
@@ -143,6 +178,7 @@ terraform destroy
 * Git best practices for DevOps projects
 
 ---
+
 
 ## 📸 Screenshots
 
@@ -159,6 +195,12 @@ Add screenshots of your deployed application below:
 ## Terraform apply output
 
 ![alt text](images/image-2.png)
+
+---
+
+## 👨‍💻 Author
+
+Rohit Bhatt
 
 ---
 
